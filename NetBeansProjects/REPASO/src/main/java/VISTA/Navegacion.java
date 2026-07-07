@@ -35,6 +35,9 @@ public class Navegacion {
                     case 2:
                         
                         break;
+                    case 3:
+                        System.out.println("Gracias por usar el sistema");
+                        break;
                     default:
                         System.out.println("Opcion no encontrada");;
                 }
