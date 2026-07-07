@@ -62,6 +62,7 @@ public class GestionarClientes {
     }
 
     private void eliminarCliente(int id) {
+        boolean eliminado=false;
         try {
             for (Cliente cliente : clientes) {
                 if (cliente.getId() == id) {
@@ -71,14 +72,18 @@ public class GestionarClientes {
                         int inputContra = new Scanner(System.in).nextInt();
 
                         if (inputContra == contraseña) { 
-                            clientes.remove(id);
+                            clientes.remove(id-1);
                             System.out.println("Cliente eliminado con éxito");
+                            eliminado=true;
                             break;
                         } else {
                             System.out.println("ÑEH, está mal. Intentos restantes: " + (2 - i));
                         }
                     }
 
+                }
+                if(eliminado){
+                    break;
                 }
             }
         } catch (Exception e) {
@@ -94,31 +99,61 @@ public class GestionarClientes {
                     System.out.println("Si no quiere actualizar cierto dato, déjelo en blanco");
                     System.out.println("Ingrese el nuevo nombre: ");
                     String nombre = new Scanner(System.in).nextLine();
-                    cliente.setNombre(nombre);
-
+                    if (nombre.isEmpty()){
+                        System.out.println("Se mantendrá el nombre actual");
+                    } else {
+                        cliente.setNombre(nombre);
+                    }
+                    
                     System.out.println("Ingrese el nuevo apelldio: ");
                     String apellido = new Scanner(System.in).nextLine();
-                    cliente.setApellido(apellido);
-
+                    if (apellido.isEmpty()) {
+                        System.out.println("Se mantendrá el apellido actual");
+                    } else {
+                        cliente.setApellido(apellido);
+                    }
+                    
                     System.out.println("Ingrese el nuevo documento: ");
                     String documento = new Scanner(System.in).nextLine();
-                    cliente.setDocumento(documento);
-
+                    if (documento.isEmpty()) {
+                        System.out.println("Se mantendrá el documento actual");
+                    } else {
+                        cliente.setDocumento(documento);
+                    }
+                    
                     System.out.println("Ingrese el nuevo tipo de documento: ");
                     String tipoDocumento = new Scanner(System.in).nextLine();
-                    cliente.setTipo_documento(tipoDocumento);
+                    if (tipoDocumento.isEmpty()) {
+                        System.out.println("Se mantendrá el tipo de documento actual");
+                    } else {
+                        cliente.setTipo_documento(tipoDocumento);
+                    }
 
                     System.out.println("Ingrese el nuevo correo: ");
                     String correo = new Scanner(System.in).nextLine();
-                    cliente.setCorreo(correo);
-
-                    System.out.println("Ingrese la nueva edad: ");
+                    if (correo.isEmpty()) {
+                        System.out.println("Se mantendrá el correo actual");
+                    } else {
+                        cliente.setCorreo(correo);
+                    }
+                    
+                    System.out.println("Ingrese la nueva edad (sero para mantener): ");
                     int edad = new Scanner(System.in).nextInt();
-                    cliente.setEdad(edad);
+                    if (edad == 0) {
+                        System.out.println("Se mantendrá la edad actual");
+                    } else {
+                        cliente.setEdad(edad);
+                    }
 
-                    System.out.println("Ingrese los nuevos puntos: ");
+                    System.out.println("Ingrese los nuevos puntos (sero para mantener): ");
                     double puntos = new Scanner(System.in).nextDouble();
-                    cliente.setPuntos(puntos);
+                    if (puntos == 0) {
+                        System.out.println("Se mantendrá los puntos actual");
+                    } else {
+                        cliente.setPuntos(puntos);
+                    }
+                    
+                    System.out.println("El Cliente ha sido actualizado con exito");
                 }
             }
         } catch (Exception e) {
