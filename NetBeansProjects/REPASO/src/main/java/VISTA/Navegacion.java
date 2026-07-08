@@ -33,7 +33,8 @@ public class Navegacion {
                         cliente.MenuPrincipal();
                         break;
                     case 2:
-                        
+                        GestionEmpleados empleado = new GestionEmpleados(empleados);
+                        empleado.menuPrincipal();
                         break;
                     case 3:
                         System.out.println("Gracias por usar el sistema");
